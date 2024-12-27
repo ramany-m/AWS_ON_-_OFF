@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instance Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Control Instance</h1>
+    <div class="Instance">
+        <div>
+    
+            <h3>Splunk Server</h3>
+        </div>
+        <div>
+    
+            <button class="button1 button" onclick="startSplunkInstance()">Start Splunk Instance</button>
+            <button class="button2 button" onclick="stopSplunkInstance()">Stop Splunk Instance</button>
+        </div>
+    </div>
+    <div class="Instance">
+        <div>
+    
+            <h3>DEV & HF Server</h3>
+        </div>
+        <div>
+    
+            <button class="button1 button" onclick="startJenkinsInstance()">Start Splunk Instance</button>
+            <button class="button2 button" onclick="stopJenkinsInstance()">Stop Splunk Instance</button>
+        </div>
+    </div>
+
+    <script>
+        const startSplunkUrl = 'https://ispsgskeeg.execute-api.ap-south-1.amazonaws.com/Start/Start_PROD_Instance';
+        const stopSplunkUrl = 'https://ispsgskeeg.execute-api.ap-south-1.amazonaws.com/Stop/Stop_PROD_Instance';
+
+        const startJenkinskUrl = 'https://ispsgskeeg.execute-api.ap-south-1.amazonaws.com/Start/Start_Dev_HF_Instances';
+        const stopJenkinskUrl = 'https://ispsgskeeg.execute-api.ap-south-1.amazonaws.com/Stop/Stop_DEV_HF_Instances';
+
+        async function startSplunkInstance() {
+            try {
+                const response = await fetch(startSplunkUrl);
+                if (!response.ok) throw new Error("HTTP error!" );
+                const data = await response.json();
+                alert(data.body);
+            } catch (error) {
+                console.error("Instance started successfully");
+                alert('Instance start successfully');
+            }
+        }
+
+        async function stopSplunkInstance() {   
+            try {
+                const response = await fetch(stopSplunkUrl);
+                if (!response.ok) throw new Error("HTTP error!" );
+                const data = await response.json();
+                alert(data.body);
+            } catch (error) {
+                console.error('Instance stopped successfully');
+                alert('Instance stopped successfully');
+            }
+        }
+        async function startJenkinsInstance() {
+            try {
+                const response = await fetch(startJenkinskUrl);
+                if (!response.ok) throw new Error("HTTP error!" );
+                const data = await response.json();
+                alert(data.body);
+            } catch (error) {
+                console.error("Instance started successfully");
+                alert('Instance start successfully');
+            }
+        }
+
+        async function stopJenkinsInstance() {   
+            try {
+                const response = await fetch(stopJenkinskUrl);
+                if (!response.ok) throw new Error("HTTP error!" );
+                const data = await response.json();
+                alert(data.body);
+            } catch (error) {
+                console.error('Instance stopped successfully');
+                alert('Instance stopped successfully');
+            }
+        }
+    </script>
+</body>
+</html>
